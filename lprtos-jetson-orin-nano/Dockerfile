@@ -27,7 +27,11 @@ RUN pip3 install --no-cache-dir --extra-index-url https://pypi.org/simple \
     seaborn \
     tqdm \
     matplotlib \
-    psutil
+    psutil \
+    scipy \
+    pycocotools \
+    onnx \
+    onnxscript
 
 # ultralytics pulls nvidia-cudnn-cu13 9.20 which shadows the system cuDNN 9.21
 # torch 2.12 was built against. Remove it so torch loads the system lib.
@@ -45,7 +49,7 @@ WORKDIR /app
 
 # App code
 COPY run_lprtos_jetson.py /app/run_lprtos_jetson.py
-
+COPY benchmark_lprtos_jetson.py /app/benchmark_lprtos_jetson.py
 
 
 EXPOSE 8765
